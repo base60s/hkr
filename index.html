@@ -39,28 +39,31 @@
   .btn-o{background:transparent;color:var(--w)}.btn-o:hover{background:var(--w10)}
   .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px}
 
-  /* 1 — threat */
-  .hero{position:relative;overflow:hidden;background:var(--k)}
+  /* 1 — threat: hero over the particle dome */
+  .hero{position:relative;overflow:hidden;background:var(--k);min-height:min(100svh,920px);display:flex;flex-direction:column}
   #bg{position:absolute;inset:0;z-index:0;display:block}
-  .hero-in{position:relative;z-index:1;padding-top:20px;padding-bottom:clamp(56px,7vw,96px)}
+  .hero-in{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;padding-top:20px;padding-bottom:clamp(160px,30vh,300px)}
   .nav{display:flex;align-items:center;gap:24px}
   .wm{font-size:22px;font-weight:800;letter-spacing:-.03em;text-decoration:none;font-stretch:125%}
   .lab{font-size:13px;color:var(--w60);text-decoration:none}.lab:hover{color:var(--w)}
   .nav-cta{margin-left:auto;padding:11px 18px;font-size:14px}
-  .hero-grid{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:48px;padding-top:clamp(48px,6vw,80px)}
-  h1{font-size:clamp(34px,5.6vw,76px);letter-spacing:-.04em;line-height:.94;font-stretch:125%}
-  .lead{margin:36px 0 0;font-size:clamp(16px,1.4vw,19px);color:var(--w60);max-width:34em;line-height:1.5}
-  @media(max-width:900px){.hero-grid{grid-template-columns:minmax(0,1fr);padding-top:clamp(170px,56vw,240px)}}
-  @media(max-width:600px){.lab{display:none}:root{--yw:44px;--yg:12px}}
+  .hero-copy{text-align:center;margin:0 auto;padding-top:clamp(72px,13vh,160px);max-width:1000px}
+  h1{font-size:clamp(34px,5vw,72px);letter-spacing:-.04em;line-height:.96;font-stretch:125%}
+  .s{display:inline}
+  .lead{margin:26px auto 0;font-size:clamp(16px,1.4vw,19px);color:var(--w60);max-width:36em;line-height:1.5}
+  .hero .cta{justify-content:center}
+  @media(max-width:600px){.lab{display:none}.s{display:block}:root{--yw:44px;--yg:12px}}
 
-  /* time-to-exploit, drawn to scale */
-  .tte{margin:36px 0 0;padding-top:22px;border-top:1px solid var(--w20)}
+  /* 1 — threat: the data, drawn to scale */
+  .data{background:var(--k)}
+  .data h2{max-width:26ch}
+  .tte{margin:40px 0 0;padding-top:22px;border-top:1px solid var(--w20)}
   .tte figcaption,.share-l{font-size:14px;color:var(--w60);margin:0 0 12px}
   .row{display:grid;grid-template-columns:var(--yw) minmax(0,1fr);align-items:center;gap:var(--yg);padding:6px 0}
   .row .y{font-size:13px;color:var(--w60);font-variant-numeric:tabular-nums}
-  .row .bar{display:flex;align-items:center;gap:14px;min-width:0}
+  .row .bar{display:flex;align-items:center;gap:16px;min-width:0}
   .row .bar i{display:block;height:14px;flex:0 1 var(--bw);min-width:1px;background:var(--w);transform-origin:left center}
-  .row .bar b{flex:0 0 auto;font-size:clamp(20px,2.2vw,28px);font-weight:700;font-stretch:125%;letter-spacing:-.03em;line-height:1;white-space:nowrap}
+  .row .bar b{flex:0 0 auto;font-size:clamp(22px,2.6vw,34px);font-weight:700;font-stretch:125%;letter-spacing:-.03em;line-height:1;white-space:nowrap}
   .row .bar b small{font-size:13px;font-weight:400;font-stretch:100%;letter-spacing:0;color:var(--w60);margin-left:10px}
   .row.past .bar i{background:var(--w40)}.row.past .bar b{color:var(--w60)}
   .row.now .bar i{min-width:2px}
@@ -73,13 +76,14 @@
 
   @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
   @keyframes fade{from{opacity:0}to{opacity:1}}
-  .row.past .bar i{animation:grow .9s cubic-bezier(.2,.7,.2,1) .25s both}
-  .row.past .bar b{animation:fade .35s ease 1s both}
-  .row.now .bar i,.row.now .bar b{animation:fade .3s ease 1.25s both}
-  .row.next .bar i,.row.next .bar b{animation:fade .3s ease 1.5s both}
-  .tte-note{animation:fade .4s ease 1.75s both}
-  .share .track i{animation:grow .7s cubic-bezier(.2,.7,.2,1) 1.9s both}
-  .share .bar b{animation:fade .35s ease 2.3s both}
+  .tte.go .row.past .bar i{animation:grow .9s cubic-bezier(.2,.7,.2,1) .1s both}
+  .tte.go .row.past .bar b{animation:fade .35s ease .85s both}
+  .tte.go .row.now .bar i,.tte.go .row.now .bar b{animation:fade .3s ease 1.1s both}
+  .tte.go .row.next .bar i,.tte.go .row.next .bar b{animation:fade .3s ease 1.35s both}
+  .tte.go .tte-note{animation:fade .4s ease 1.6s both}
+  .tte.go .share .track i{animation:grow .7s cubic-bezier(.2,.7,.2,1) 1.75s both}
+  .tte.go .share .bar b{animation:fade .35s ease 2.15s both}
+  .tte.wait .row .bar i,.tte.wait .row .bar b,.tte.wait .tte-note{opacity:0}
 
   /* 2 — solution and proof */
   .beat{position:relative}
@@ -126,7 +130,7 @@
   @media(max-width:460px){.trust{grid-template-columns:1fr}}
 
   /* 3 — ask */
-  .close h2{font-size:clamp(34px,6vw,84px);letter-spacing:-.045em;line-height:.94;max-width:none}
+  .close h2{font-size:clamp(34px,6vw,76px);letter-spacing:-.045em;line-height:.94;max-width:none}
   .close .cta{margin-top:40px}
   .foot{border-top:1px solid var(--w10)}
   .foot-in{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding-top:24px;padding-bottom:28px;font-size:13px;color:var(--w60)}
@@ -134,7 +138,7 @@
   .foot .r{margin-left:auto}
 
   :focus-visible{outline:2px solid var(--w);outline-offset:3px}.beat-inv :focus-visible{outline-color:var(--k)}
-  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.tte.wait .row .bar i,.tte.wait .row .bar b,.tte.wait .tte-note{opacity:1}}
 </style>
 </head>
 <body>
@@ -150,32 +154,34 @@
         <a class="btn btn-w nav-cta" href="mailto:contact@chrom.ar?subject=HKr%20pilot">Request a pilot</a>
       </header>
 
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <h1 id="h1"><span class="l">Attackers exploit</span><span class="l">in a day.</span><span class="l">Your pentest runs</span><span class="l">once a year.</span></h1>
-
-          <figure class="tte">
-            <figcaption>Median time from disclosure to exploit, drawn to scale.</figcaption>
-            <div class="row past"><span class="y">2021</span><span class="bar"><i style="--bw:100%" aria-hidden="true"></i><b>1 year</b></span></div>
-            <div class="row now"><span class="y">2026</span><span class="bar"><i style="--bw:0.274%" aria-hidden="true"></i><b>1 day</b></span></div>
-            <div class="row next"><span class="y">2027</span><span class="bar"><i style="--bw:0.0002%" aria-hidden="true"></i><b>1 min<small>projected</small></b></span></div>
-            <p class="tte-note">At this scale a day is a hairline. A minute is thinner than that.</p>
-            <div class="share">
-              <p class="share-l">Exploited vulnerabilities that were exploited on or before public disclosure.</p>
-              <div class="row"><span class="y"></span><span class="bar"><span class="track"><i style="--bw:86.7%" aria-hidden="true"></i></span><b>86.7%</b></span></div>
-            </div>
-            <p class="src">Sources: Epoch.ai via a16z, 2026 (1 day); 2018–2024 trend (1 year); 2027 projected (1 min); zerodayclock.com (86.7%).</p>
-          </figure>
-
-          <p class="lead">Anything found between pentests stays open until the next one. HKr keeps agents on your attack surface continuously and turns every finding into a pull request your team can merge today.</p>
-          <div class="cta">
-            <a class="btn btn-w" href="mailto:contact@chrom.ar?subject=HKr%20pilot">Request a pilot</a>
-            <a class="btn btn-o" href="#run">See a live run</a>
-          </div>
+      <div class="hero-copy">
+        <h1 id="h1"><span class="l"><span class="s">Attackers exploit</span> <span class="s">in a day.</span></span><span class="l"><span class="s">Your pentest runs</span> <span class="s">once a year.</span></span></h1>
+        <p class="lead">HKr keeps agents on your attack surface continuously and turns every finding into a pull request your team can merge today.</p>
+        <div class="cta">
+          <a class="btn btn-w" href="mailto:contact@chrom.ar?subject=HKr%20pilot">Request a pilot</a>
+          <a class="btn btn-o" href="#run">See a live run</a>
         </div>
       </div>
     </div>
   </div>
+
+  <section class="beat data">
+    <div class="wrap beat-in">
+      <h2>Anything found between pentests stays open until the next one.</h2>
+      <figure class="tte wait" id="tte">
+        <figcaption>Median time from disclosure to exploit, drawn to scale.</figcaption>
+        <div class="row past"><span class="y">2021</span><span class="bar"><i style="--bw:100%" aria-hidden="true"></i><b>1 year</b></span></div>
+        <div class="row now"><span class="y">2026</span><span class="bar"><i style="--bw:0.274%" aria-hidden="true"></i><b>1 day</b></span></div>
+        <div class="row next"><span class="y">2027</span><span class="bar"><i style="--bw:0.0002%" aria-hidden="true"></i><b>1 min<small>projected</small></b></span></div>
+        <p class="tte-note">At this scale a day is a hairline. A minute is thinner than that.</p>
+        <div class="share">
+          <p class="share-l">Exploited vulnerabilities that were exploited on or before public disclosure.</p>
+          <div class="row"><span class="y"></span><span class="bar"><span class="track"><i style="--bw:86.7%" aria-hidden="true"></i></span><b>86.7%</b></span></div>
+        </div>
+        <p class="src">Sources: Epoch.ai via a16z, 2026 (1 day); 2018–2024 trend (1 year); 2027 projected (1 min); zerodayclock.com (86.7%).</p>
+      </figure>
+    </div>
+  </section>
 
   <section class="beat beat-inv">
     <div class="wrap beat-in">
@@ -241,8 +247,16 @@
   /* display type: fit each block of nowrap lines to its container */
   (function(){
     function fit(h,maxPx,minPx){if(!h)return;var avail=h.clientWidth;h.style.fontSize=maxPx+'px';var widest=0;h.querySelectorAll('.l').forEach(function(l){widest=Math.max(widest,l.scrollWidth);});var fs=Math.floor(maxPx*Math.min(1,avail/Math.max(1,widest))*0.985);h.style.fontSize=Math.max(minPx,fs)+'px';}
-    function all(){var vw=window.innerWidth;fit(el('h1'),Math.min(76,Math.max(44,vw*0.056)),22);fit(el('closeH'),Math.min(76,Math.max(44,vw*0.06)),20);}
+    function all(){var vw=window.innerWidth;fit(el('h1'),Math.min(72,Math.max(44,vw*0.05)),22);fit(el('closeH'),Math.min(76,Math.max(44,vw*0.06)),20);}
     all();window.addEventListener('resize',all);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(all);setTimeout(all,1200);
+  })();
+
+  /* the data figure draws itself once, when it scrolls into view */
+  (function(){
+    var f=el('tte');if(!f)return;
+    function go(){f.classList.remove('wait');f.classList.add('go');}
+    if(reduce||!('IntersectionObserver' in window)){go();return;}
+    new IntersectionObserver(function(e,o){if(e[0].isIntersecting){go();o.disconnect();}},{threshold:0.3}).observe(f);
   })();
 
   /* recorded run: replays while in view */
@@ -260,44 +274,47 @@
     if('IntersectionObserver' in window){new IntersectionObserver(function(e){var v=e[0].isIntersecting;if(v&&!on){on=true;run();}else if(!v&&on){on=false;clearTimeout(timer);}},{threshold:0.35}).observe(win);}else{on=true;run();}
   })();
 
-  /* orbital sphere: canvas 2d, contained in the hero, kept quiet */
+  /* structure flow: a masked white particle dome drifting across a dark field. raw WebGL, no dependencies */
   (function(){
     var hero=document.querySelector('.hero'),canvas=el('bg');if(!hero||!canvas)return;
-    var ctx=canvas.getContext('2d');if(!ctx){canvas.style.display='none';return;}
-    var N=2200,P=new Float32Array(N*3),NI=1100,PI2=new Float32Array(NI*3);
-    function fib(arr,n,R){var phi=Math.PI*(3-Math.sqrt(5));for(var i=0;i<n;i++){var y=1-(i/(n-1))*2,r=Math.sqrt(1-y*y),th=phi*i;arr[i*3]=Math.cos(th)*r*R;arr[i*3+1]=y*R;arr[i*3+2]=Math.sin(th)*r*R;}}
-    fib(P,N,1);fib(PI2,NI,0.74);
-    var RINGS=[{R:1.42,tx:1.1,ty:0.3,sp:0.10,n:3},{R:1.6,tx:0.55,ty:-0.9,sp:-0.07,n:4},{R:1.3,tx:1.9,ty:1.4,sp:0.13,n:2}];
-    var W=0,H=0,dpr=1,mouse={x:0,y:0},cx=0,cy=0,S=0,t0=performance.now(),visible=true,running=false;
-    function glowTex(){var c=document.createElement('canvas');c.width=c.height=512;var g=c.getContext('2d');var r=g.createRadialGradient(256,256,0,256,256,256);
-      r.addColorStop(0,'rgba(255,255,255,0.16)');r.addColorStop(0.45,'rgba(255,255,255,0.045)');r.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=r;g.fillRect(0,0,512,512);return c;}
-    var glowc=glowTex();
-    function rot(x,y,z,ax,ay){var cy_=Math.cos(ax),sy_=Math.sin(ax),y1=y*cy_-z*sy_,z1=y*sy_+z*cy_;var cz=Math.cos(ay),sz=Math.sin(ay),x2=x*cz+z1*sz,z2=-x*sz+z1*cz;return [x2,y1,z2];}
-    function proj(p){var f=3.2,k=f/(f+p[2]);return [cx+p[0]*S*k,cy+p[1]*S*k,k,p[2]];}
-    function layout(){dpr=Math.min(window.devicePixelRatio||1,2);W=hero.clientWidth;H=hero.clientHeight;canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);canvas.style.width=W+'px';canvas.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);
-      if(W>900){S=Math.min(W*0.16,H*0.27);cx=W*0.80;cy=H*0.5;}else{S=W*0.24;cx=W*0.88;cy=140;}
-      if(reduce)frame(t0+9000);}
+    var gl=canvas.getContext('webgl',{alpha:true,antialias:false,depth:false,premultipliedAlpha:true,powerPreference:'low-power'})||canvas.getContext('experimental-webgl');
+    if(!gl){canvas.style.display='none';return;}
+    var VS='attribute vec3 aP;uniform vec2 uRes,uC,uMask;uniform float uR,uRot,uTilt,uSize,uFade;varying float vA;'+
+      'void main(){float c=cos(uRot),s=sin(uRot);vec3 p=vec3(aP.x*c+aP.z*s,aP.y,-aP.x*s+aP.z*c);'+
+      'float ct=cos(uTilt),st=sin(uTilt);p=vec3(p.x,p.y*ct-p.z*st,p.y*st+p.z*ct);'+
+      'vec2 sc=uC+vec2(p.x,-p.y)*uR;vec2 clip=sc/uRes*2.0-1.0;gl_Position=vec4(clip.x,-clip.y,0.0,1.0);'+
+      'float front=(p.z+1.0)*0.5;float m=smoothstep(uMask.x,uMask.y,length(p.xy));'+
+      'float f=1.0-smoothstep(uFade,1.0,sc.y/uRes.y);'+
+      'vA=m*f*(0.35+0.65*front);gl_PointSize=uSize*(0.7+0.6*front);}';
+    var FS='precision mediump float;uniform float uOp;varying float vA;'+
+      'void main(){float r=length(gl_PointCoord-0.5);if(r>0.5)discard;float a=uOp*vA*(1.0-smoothstep(0.2,0.5,r));gl_FragColor=vec4(a,a,a,a);}';
+    function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){throw new Error(gl.getShaderInfoLog(s));}return s;}
+    var prog;
+    try{prog=gl.createProgram();gl.attachShader(prog,sh(gl.VERTEX_SHADER,VS));gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(prog);if(!gl.getProgramParameter(prog,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(prog));}
+    catch(e){canvas.style.display='none';return;}
+    gl.useProgram(prog);
+    var N=60000,P=new Float32Array(N*3),seed=20260917;
+    function rnd(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;}
+    for(var i=0;i<N;i++){var y=rnd()*2-1,r=Math.sqrt(1-y*y),th=rnd()*6.283185307;P[i*3]=Math.cos(th)*r;P[i*3+1]=y;P[i*3+2]=Math.sin(th)*r;}
+    var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,P,gl.STATIC_DRAW);
+    var aP=gl.getAttribLocation(prog,'aP');gl.enableVertexAttribArray(aP);gl.vertexAttribPointer(aP,3,gl.FLOAT,false,0,0);
+    var U={};['uRes','uC','uMask','uR','uRot','uTilt','uSize','uFade','uOp'].forEach(function(n){U[n]=gl.getUniformLocation(prog,n);});
+    gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE);gl.clearColor(0,0,0,0);
+    gl.uniform2f(U.uMask,0.2,0.5);gl.uniform1f(U.uOp,0.4);gl.uniform1f(U.uTilt,0.32);
+    var W=0,H=0,dpr=1,t0=performance.now(),visible=true,running=false;
+    function layout(){dpr=Math.min(window.devicePixelRatio||1,2);W=hero.clientWidth;H=hero.clientHeight;canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);canvas.style.width=W+'px';canvas.style.height=H+'px';
+      gl.viewport(0,0,canvas.width,canvas.height);gl.uniform2f(U.uRes,canvas.width,canvas.height);
+      var wide=W>900,R=(wide?0.5:0.78)*W,apex=(wide?0.6:0.66)*H;
+      gl.uniform1f(U.uR,R*dpr);gl.uniform2f(U.uC,0.5*W*dpr,(apex+R)*dpr);gl.uniform1f(U.uSize,1.4*dpr);gl.uniform1f(U.uFade,0.84);
+      if(reduce)frame(t0+40000);}
     function frame(now){if(!visible&&!reduce){running=false;return;}var t=(now-t0)/1000;
-      ctx.clearRect(0,0,W,H);
-      var ay=t*0.08+mouse.x*0.25,ax=Math.sin(t*0.12)*0.08+mouse.y*0.15,gs=S*4.2;
-      ctx.drawImage(glowc,cx-gs/2,cy-gs/2,gs,gs);
-      ctx.lineWidth=1;
-      RINGS.forEach(function(r,ri){var a0=t*r.sp*2.5;ctx.strokeStyle='rgba(255,255,255,0.13)';ctx.beginPath();
-        for(var i=0;i<=120;i++){var a=i/120*Math.PI*2;var q=rot(Math.cos(a)*r.R,0,Math.sin(a)*r.R,r.tx,r.ty+a0);q=rot(q[0],q[1],q[2],ax,ay);var p=proj(q);if(i===0)ctx.moveTo(p[0],p[1]);else ctx.lineTo(p[0],p[1]);}
-        ctx.stroke();
-        for(var k=0;k<r.n;k++){var ang=t*r.sp*1.9+k*(6.2832/r.n)+ri;var q2=rot(Math.cos(ang)*r.R,0,Math.sin(ang)*r.R,r.tx,r.ty+a0);q2=rot(q2[0],q2[1],q2[2],ax,ay);var p2=proj(q2);
-          var g=ctx.createRadialGradient(p2[0],p2[1],0,p2[0],p2[1],8*p2[2]);g.addColorStop(0,'rgba(255,255,255,0.75)');g.addColorStop(0.35,'rgba(255,255,255,0.25)');g.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(p2[0],p2[1],8*p2[2],0,6.2832);ctx.fill();}
-      });
-      var br=1+Math.sin(t*0.9)*0.012;
-      function dots(arr,n,rs,alpha,sz){for(var i=0;i<n;i++){var q=rot(arr[i*3]*br,arr[i*3+1]*br,arr[i*3+2]*br,ax,ay+rs);var p=proj(q);var a=alpha*(0.35+0.65*(p[3]+1)/2);ctx.fillStyle='rgba(255,255,255,'+a.toFixed(3)+')';var d=sz*p[2];ctx.fillRect(p[0]-d/2,p[1]-d/2,d,d);}}
-      dots(PI2,NI,-t*0.07,0.28,1.2);dots(P,N,t*0.05,0.55,1.6);
+      gl.uniform1f(U.uRot,t*0.03);gl.clear(gl.COLOR_BUFFER_BIT);gl.drawArrays(gl.POINTS,0,N);gl.flush();
       if(!reduce)requestAnimationFrame(frame);}
     function start(){if(running||reduce)return;running=true;requestAnimationFrame(frame);}
     layout();
     window.addEventListener('resize',layout);
     if(window.ResizeObserver){new ResizeObserver(function(){layout();}).observe(hero);}
-    window.addEventListener('pointermove',function(e){mouse.x=(e.clientX/window.innerWidth-0.5)*2;mouse.y=(e.clientY/window.innerHeight-0.5)*2;},{passive:true});
-    if(reduce){frame(t0+9000);}
+    if(reduce){frame(t0+40000);}
     else{start();if('IntersectionObserver' in window){new IntersectionObserver(function(e){visible=e[0].isIntersecting;if(visible)start();},{threshold:0}).observe(hero);}}
   })();
 })();
