@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#000000">
 <link rel="canonical" href="https://base60s.github.io/hkr/">
 <title>HKr — Agentic defense that keeps up with agentic attackers.</title>
-<meta name="description" content="Attackers exploit in a day. Your pentest runs once a year. HKr keeps agents on your attack surface continuously and turns every finding into a pull request your team can merge today. By Chroma Labs.">
+<meta name="description" content="Attackers exploit in a day. Your pentest runs once a year. HKr puts agents on your attack surface and inside every pull request, and turns each finding into a fix your team can merge today. By Chroma Labs.">
 <meta property="og:title" content="HKr — Agentic defense that keeps up with agentic attackers.">
 <meta property="og:description" content="Attackers exploit in a day. Your pentest runs once a year. HKr closes the gap: continuous agentic attacks, fixes shipped as pull requests.">
 <meta property="og:url" content="https://base60s.github.io/hkr/">
@@ -28,7 +28,7 @@
   html{scroll-behavior:smooth}
   body{margin:0;background:var(--k);color:var(--w);font-family:var(--sans);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit}
-  h1,h2,h3{margin:0;font-weight:700}
+  h1,h2,h3,h4{margin:0;font-weight:700}
   .l{display:block;white-space:nowrap}
   .wrap{max-width:1180px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
   .skip{position:absolute;left:-999px;top:0}.skip:focus{left:12px;top:12px;background:var(--w);color:var(--k);padding:8px 12px;z-index:9}
@@ -91,15 +91,18 @@
   .beat-inv{background:var(--w);color:var(--k)}
   h2{font-size:clamp(28px,3.8vw,48px);letter-spacing:-.035em;line-height:1;font-stretch:125%;max-width:20ch}
   .lead-k{margin:20px 0 0;font-size:clamp(17px,1.5vw,20px);color:var(--k70);max-width:32em}
-  .b2-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:48px;margin-top:56px;align-items:start}
-  @media(max-width:900px){.b2-grid{grid-template-columns:1fr}}
-  .steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--k)}
+  .blk{margin-top:clamp(56px,7vw,88px);padding-top:28px;border-top:1px solid var(--k)}
+  .blk h3{font-size:clamp(24px,3vw,36px);letter-spacing:-.03em;line-height:1.05;font-stretch:125%;max-width:38ch;text-wrap:balance}
+  .blk .sub{margin:14px 0 0;font-size:16.5px;color:var(--k70);max-width:38em;line-height:1.5}
+  .b2-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:48px;margin-top:36px;align-items:start}
+  @media(max-width:900px){.b2-grid{grid-template-columns:minmax(0,1fr)}}
+  .steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--k15)}
   .steps li{display:grid;grid-template-columns:36px minmax(0,1fr);gap:16px;padding:20px 0 22px;border-bottom:1px solid var(--k15)}
   .steps .n{font-size:14px;font-weight:700;font-stretch:125%;color:var(--k70);padding-top:5px;font-variant-numeric:tabular-nums}
-  .steps h3{font-size:20px;letter-spacing:-.02em;font-stretch:112%;line-height:1.15}
+  .steps h4{font-size:20px;letter-spacing:-.02em;font-stretch:112%;line-height:1.15}
   .steps p{margin:6px 0 0;font-size:15.5px;color:var(--k70);line-height:1.45;max-width:30em}
 
-  .win{border:1px solid var(--k);background:var(--k);color:var(--w);font-family:var(--mono);font-size:12.5px;scroll-margin-top:24px}
+  .win{border:1px solid var(--k);background:var(--k);color:var(--w);font-family:var(--mono);font-size:12.5px;scroll-margin-top:24px;min-width:0}
   .wbar{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--w10);color:var(--w60)}
   .wbar b{color:var(--w);font-weight:500}.wbar .t{margin-left:auto;color:var(--w);font-variant-numeric:tabular-nums}
   .wgrid{display:grid;grid-template-columns:1.5fr 1fr}
@@ -122,6 +125,24 @@
   .df div{display:flex;gap:10px;padding:1px 0}.df .g{width:10px;flex:0 0 auto;color:var(--w60)}
   .df .del{color:var(--w60);text-decoration:line-through}.df .add{color:var(--w)}.df .add .g{color:var(--w)}
   .pend{display:none}.in{animation:rowIn .25s ease}@keyframes rowIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  /* pull request review window */
+  .prh{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 14px;border-bottom:1px solid var(--w10);font-family:var(--sans);font-size:14px}
+  .prh b{color:var(--w);font-weight:500}
+  .meta{color:var(--w60);font-size:12.5px}
+  .fileh{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--w10);color:var(--w60)}
+  .fileh .path{color:var(--w);overflow-wrap:anywhere}.fileh .ai{margin-left:auto;font-style:italic}
+  .diff{list-style:none;margin:0;padding:10px 0;counter-reset:ln 16;border-bottom:1px solid var(--w10);overflow-x:auto}
+  .diff li{display:flex;gap:12px;padding:1px 14px;color:var(--w80);white-space:pre;line-height:1.7}
+  .diff li::before{counter-increment:ln;content:counter(ln);width:22px;text-align:right;color:var(--w40);flex:0 0 auto}
+  .diff .g{color:var(--w60);flex:0 0 auto}.diff code{font:inherit}
+  .rev{margin:14px;padding:12px 14px 14px;border-left:2px solid var(--alert);background:rgba(255,255,255,.05)}
+  .revh{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-family:var(--sans);font-size:13px}
+  .revh b{color:var(--w);font-weight:600}
+  .bot{display:inline-flex;width:20px;height:20px;align-items:center;justify-content:center;border:1px solid var(--w40);font:600 11px/1 var(--sans);color:var(--w)}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 12px}
+  .rev p{margin:0;font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--w80)}
+  .rev p code{font-family:var(--mono);font-size:12px;background:var(--w10);padding:1px 5px;color:var(--w)}
 
   .trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 32px;margin:64px 0 0;padding-top:24px;border-top:1px solid var(--k)}
   .trust dt{font-size:17px;font-weight:600;font-stretch:112%;letter-spacing:-.01em}
@@ -156,7 +177,7 @@
 
       <div class="hero-copy">
         <h1 id="h1"><span class="l"><span class="s">Attackers exploit</span> <span class="s">in a day.</span></span><span class="l"><span class="s">Your pentest runs</span> <span class="s">once a year.</span></span></h1>
-        <p class="lead">HKr keeps agents on your attack surface continuously and turns every finding into a pull request your team can merge today.</p>
+        <p class="lead">HKr puts agents on your attack surface and inside every pull request, and turns each finding into a fix your team can merge today.</p>
         <div class="cta">
           <a class="btn btn-w" href="mailto:contact@chrom.ar?subject=HKr%20pilot">Request a pilot</a>
           <a class="btn btn-o" href="#run">See a live run</a>
@@ -186,14 +207,18 @@
   <section class="beat beat-inv">
     <div class="wrap beat-in">
       <h2>Defense has to run at attacker speed.</h2>
-      <p class="lead-k">Agents find it. A pull request fixes it. Your team merges.</p>
+      <p class="lead-k">Outside in and inside out: agents attack what you've shipped and review what you're about to ship. Every finding comes back as a pull request. Your team merges.</p>
 
+      <div class="blk">
+        <h3>Exploitable paths found before attackers find them.</h3>
+        <p class="sub">Agents attack your live surface the way an attacker would. Proof kept. The fix arrives as a pull request.</p>
+      </div>
       <div class="b2-grid">
         <ol class="steps">
-          <li><span class="n">1</span><div><h3>Prove your domain</h3><p>Verify ownership. Nothing to install.</p></div></li>
-          <li><span class="n">2</span><div><h3>Agents attack it</h3><p>Every host on your surface, tested the way an attacker would. Proof kept.</p></div></li>
-          <li><span class="n">3</span><div><h3>A pull request fixes it</h3><p>Ready for your team to review and merge.</p></div></li>
-          <li><span class="n">4</span><div><h3>Every push, again</h3><p>Each change is re-tested. Back to step 1.</p></div></li>
+          <li><span class="n">1</span><div><h4>Prove your domain</h4><p>Verify ownership. Nothing to install.</p></div></li>
+          <li><span class="n">2</span><div><h4>Agents attack it</h4><p>Every host on your surface, tested the way an attacker would. Proof kept.</p></div></li>
+          <li><span class="n">3</span><div><h4>A pull request fixes it</h4><p>Ready for your team to review and merge.</p></div></li>
+          <li><span class="n">4</span><div><h4>Every push, again</h4><p>Each change is re-tested. Back to step 1.</p></div></li>
         </ol>
 
         <div class="win" id="run" role="figure" aria-label="A recorded HKr run: from an authenticated IDOR to a mergeable fix">
@@ -216,11 +241,42 @@
         </div>
       </div>
 
+      <div class="blk">
+        <h3>Vulnerabilities caught before merge.</h3>
+        <p class="sub">AI writes code at machine speed and insecure patterns ship on a green build. Every pull request is reviewed inline, before it merges. Your team keeps the merge decision.</p>
+      </div>
+      <div class="b2-grid">
+        <ol class="steps">
+          <li><span class="n">1</span><div><h4>Pull request opened</h4><p>Webhook in. Nothing to install.</p></div></li>
+          <li><span class="n">2</span><div><h4>Inline comments</h4><p>Exact lines. New, inherited, resolved.</p></div></li>
+          <li><span class="n">3</span><div><h4>“@hkr fix H-1”</h4><p>Rewrites, builds, opens a fix PR.</p></div></li>
+          <li><span class="n">4</span><div><h4>Your team decides</h4><p>HKr never merges.</p></div></li>
+        </ol>
+
+        <div class="win" role="figure" aria-label="An HKr inline review comment on a pull request, flagging a SQL injection introduced by AI-assisted code">
+          <div class="wbar"><span><b>github.com/acme/orders-api</b>/pull/2814</span><span class="t">open, +24 −0</span></div>
+          <div class="prh"><span class="sv">Open</span><b>feat(orders): add lookup by customer ID</b><span class="meta">#2814 · 2 commits · m.acosta wants to merge into main</span></div>
+          <div class="fileh"><span class="path">src/main/java/com/acme/orders/OrderRepository.java</span><span>+5 −0</span><span class="ai">82% AI-generated</span></div>
+          <ol class="diff" aria-label="Added lines 17 to 21">
+            <li><span class="g">+</span><code>public Order findByCustomerId(String customerId) {</code></li>
+            <li><span class="g">+</span><code>    return jdbc.queryForObject(</code></li>
+            <li><span class="g">+</span><code>        "SELECT * FROM orders WHERE customer_id = '" + customerId + "'",</code></li>
+            <li><span class="g">+</span><code>        orderMapper);</code></li>
+            <li><span class="g">+</span><code>}</code></li>
+          </ol>
+          <div class="rev">
+            <div class="revh"><span class="bot">H</span><b>hkr-bot</b><span class="meta">review on OrderRepository.java:19 · 38 seconds ago</span></div>
+            <div class="tags"><span class="sv c">High · H-1</span><span class="sv">CWE-89 · SQL injection</span></div>
+            <p>New: <code>findByCustomerId</code> concatenates the customer-ID path parameter directly into the SQL. A request with <code>' OR '1'='1</code> in the path returns every order in the table: full enumeration, no authentication bypass needed. Suggestion: parameterize the filter with <code>?</code> and a bound argument, matching the JdbcTemplate shape used elsewhere in this file.</p>
+          </div>
+        </div>
+      </div>
+
       <dl class="trust">
-        <div><dt>Ownership-gated</dt><dd>Only domains you prove are yours.</dd></div>
-        <div><dt>Ephemeral runners</dt><dd>Destroyed after every run.</dd></div>
-        <div><dt>Your evidence</dt><dd>Every step recorded and kept in your account.</dd></div>
         <div><dt>Never merges</dt><dd>HKr proposes pull requests. Your team decides.</dd></div>
+        <div><dt>Minimum access</dt><dd>Only domains you prove are yours. Read-only GitHub scopes. No production access.</dd></div>
+        <div><dt>Ephemeral runners</dt><dd>Destroyed after every run.</dd></div>
+        <div><dt>Your evidence</dt><dd>Every step recorded and kept in your account. Nothing leaves your environment.</dd></div>
       </dl>
     </div>
   </section>
